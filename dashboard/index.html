@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/5ca4b5c7ad.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="../styles/dashboard.css" rel="stylesheet">
+    <Script>
+
+    </Script>
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <title>NetZero Dashboard</title>
+</head>
+<body>
+    <!-- home page start-->
+    <div id="home" class="animate__animated animate__fadeIn">
+        <div id="topnav">
+            <span class="netzero">NETZERO</span>
+            <span><i class="fas fa-bell"></i></span>
+        </div>
+    
+        <div id="carbonfp">
+            Food Carbon Footprint This Week
+            <br>
+            <span class='stat'>30% less</span>
+        </div>
+ 
+    </div>
+    <!-- home page end-->
+    
+    <!--scanner page start - to be filled by JS-->
+    <div id="scanmenu">
+        <div id="topnav">
+            <span class="netzero">NETZERO</span>
+            <span><i class="fas fa-bell"></i></span>
+        </div>
+        <div class="scanlist animate__animated animate__fadeInUp" >
+            <a href="javascript:openscan();"><i class="fas fa-plus-circle"></i> New Scan</a>
+            <a href="#"><i class="fas fa-arrow-circle-left"></i> Previous Scans</a>
+            <a href="#"><i class="fas fa-eye-slash"></i> Unopen Scans</a>
+        </div>
+    </div>
+    <div id="scanner">
+        <div class="camcontainer">
+            <div id="loading">Analyzing....</div>
+            <video id="webcam" width="100%" autoplay playsinline></video>
+            <canvas id="canvas" height="100px" style="display:none"></canvas>
+        </div>
+        <div class="cam-controls">
+            <a href=""><i class="fas fa-images"></i><br>Previous</a>
+            <a href="javascript:capture()"><i class="far fa-circle"></i><br>Scan</a>
+            <a name="flipcam" href="javascript:cameraflip()"><i class="fas fa-random"></i><br>Switch</a>
+        </div>
+
+    </div>
+    <div id="scanresult">
+        <h4>Procut Information</h4>
+        <div class="productname animate__animated animate__jackInTheBox">
+            <img id="foodimg">
+            <span id="foodname">Burger</span>
+        </div>
+        <nav class="resultnav animate__animated animate__fadeInUp">
+                <a href="javascript:overviewinfo()"><i id="searchicn" autofocus class="fas fa-search"></i></a>
+                <a href="javascript:nutriinfo()"><i class="fas fa-shopping-basket"></i></a>
+                <a href="#"><i class="fas fa-shoe-prints"></i></a>
+                <a href="#"><i class="fas fa-certificate"></i></a>
+        </nav>
+        <div class="infocontainer">
+
+            <div id="overviewinfo">
+                <span class="navtitle" style="color:#247D7E;">Overview</span><br><br>
+
+                <div class="infolist">
+                    <span style="color:#D9312D">Health Meter <i class="fas fa-heartbeat"></i><br><span>10% Healthy</span></span><br>
+                    <span style="color:#684018">Carbon Meter <i class="fas fa-shoe-prints"></i><br><span>20% Higher</span></span><br>
+                    <span>Overall Score <br><span>5%</span></span><br>
+                    <span style="color:#55A646">Recommended? <br><span>NO</span></span><br>
+                </div>
+
+            </div>
+            <div id="nutriinfo">
+                <span class="navtitle" style="color:#D9312D">Health Meter <i class="fas fa-heartbeat"></i></span><br><br>
+                <div class="infolist">
+                    <span><b>Calories</b><br><span id="calories"></span></span><br>
+                    <span><b>Fat</b><br><span id="fat"></span></span><br>
+                    <span><b>Protein</b><br><span id="protein"></span></span><br>
+                    <span><b>Carbohydrates</b><br><span id="carbs"></span></span><br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- scanner page end-->
+
+    
+    <div class="nav-container">
+        <div class="navbar">
+            <a href="javascript:gohome()" id='homebtn' autofocus><i class="fas fa-home"></i><br>Home</a>
+            <a href="javascript:scanmenu()"><i class="fas fa-camera"></i><br>Scan</a>
+            <a href="#contact"><i class="fas fa-book"></i><br>Inventory</a>
+            <a href="#"><i class="fas fa-user"></i><br>Profile</a>
+        </div>
+    </div>
+    
+    <script src="../scripts/dashboard.js"></script>
+    <script>
+
+        const webcamElement = document.getElementById('webcam');
+        const canvasElement = document.getElementById('canvas');
+        const webcam = new Webcam(webcamElement, 'user', canvasElement);
+        
+        function openscan(){
+            home.style.display = 'none';
+            scanner.style.display = 'block';
+        
+            document.getElementsByTagName("body")[0].style.overflow = 'hidden';
+            
+            webcam.start()
+            .then(result =>{
+                console.log("webcam started");
+            })
+            .catch(err => {
+                alert(err + '\r\n\r\nInvalid Camera or Camera is currently used by other apps');
+            });
+        };
+        function cameraflip(){
+            webcam.flip();
+            webcam.start();
+        };
+
+        //pages
+
+        function gohome(){
+            scanresult.style.display = 'none';
+            scanner.style.display = 'none';
+            scanlist.style.display = 'none';
+            home.style.display = 'block';
+
+            document.getElementsByTagName("body")[0].style.overflow = 'auto';
+
+        }
+
+        function scanmenu(){
+            scanresult.style.display = 'none'
+            home.style.display = 'none';
+            scanner.style.display = 'none';
+            scanlist.style.display = 'block';
+        };
+
+    </script>
+</body>
+</html>
