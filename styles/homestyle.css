@@ -1,0 +1,100 @@
+* {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    text-align:center;
+    color:black;
+    font-family: 'Open Sans', sans-serif;
+}
+#welcome .title {
+    font-weight: bold;
+    font-size: 300%;
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+#welcome {
+    display:block;
+}
+#welcome .title span{
+    font-weight:600;
+    font-size:18px;
+    color: #247D7E;
+}
+ a[name=getstarted], a[name=signin]{
+    color:whitesmoke;
+    background-color:#90C471;
+    width: 80vw;
+    padding: 15px 0;
+    border-radius: 15px;
+    font-weight: 300;
+    font-size: 120%;
+    margin: 0;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.3s;
+}
+a[name=getstarted]:hover, a[name=signin]:hover{
+    background-color:#344d25;
+    animation: 0.3s;
+}
+span[name=notyetuser]{
+    margin: 0;
+    position: absolute;
+    bottom: 04%;
+    width:100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+span[name=notyetuser] a{
+    color:#247D7E;
+    font-weight:600;
+}
+a[name=signin]{
+    display: none;
+}
+#loginform{
+    display: none;
+    text-align: left;
+    margin:30% 0% 0% 10%;
+    width:80%;
+}
+#loginform p{
+    font-size: 180%;
+    font-weight:600;
+}
+#loginform p span{
+    font-size:180%;
+    font-weight: 700;
+    color:#247D7E;
+    
+}
+#loginform .form span[name=enter]{
+    opacity:0.6;
+    max-width:100%;
+}
+input {
+    width:98%;
+    margin:10px 0px 30px 0px;
+    padding:5px 0px;
+    font-size:120%;
+    border:none;
+    outline:none;
+    border-bottom: 2px solid black;
+}
+#loginform .form form{
+    margin:20px 0px 0px 0px; 
+    
+}
+
+.scanlist {
+    color: red;
+    text-decoration: none;
+}
